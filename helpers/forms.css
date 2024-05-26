@@ -1,0 +1,138 @@
+
+table {
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+
+input {
+    width: 150px;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid black;
+    height: 25px;
+    margin-bottom: 4px;
+}
+
+.inputRadio {
+    width: auto;
+}
+
+
+
+
+
+#leftColumn #responsibleContainer form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+
+label {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    gap: 5px;
+}
+
+#kenteken span {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+#kenteken input {
+    border: 3px solid black;
+    background-color: yellow;
+}
+
+
+
+
+
+
+
+#paidDamageCheckboxGroup {
+    display: flex;
+    gap: 20px;
+    margin-block: 10px;
+}
+
+
+
+#damageHistoryForm {
+    width: 100%;
+}
+
+#damageHistoryForm th {
+    background-color: rgb(234, 235, 224);
+}
+
+#damageHistoryForm td {
+    background-color: rgb(247, 247, 247);
+}
+
+#damageHistoryInnerForm {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+
+
+
+
+th, td, tr {
+    border: 1px solid #000000;
+    padding: 5px;
+    text-align: center;
+    margin: 0;
+    font-weight: 13px;
+    
+}
+
+#damageHistoryContainer td {
+    height: 100px;
+}
+
+/* Section 2 start */
+
+#section2 #dataTableContainer {
+    width: 100%;
+    height: 100%;
+}
+
+#section2 #dataTableContainer #dataTable {
+    width: 100%;
+    
+}
+
+#dataTable th {
+    height: 50px;
+    background-color: rgb(234, 235, 224);
+}
+
+#dataTable td {
+    height: 30px;
+    background-color: rgb(247, 247, 247);
+}
+
+
+/* Message TextArea */
+
+#submitData {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    padding: 2px;
+    background-color: green;
+    border: 2px solid black;
+    color: white;
+    cursor: pointer;
+    margin-top: 5px;
+
+}
+

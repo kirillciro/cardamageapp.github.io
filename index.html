@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Car Damage App</title>
+</head>
+
+<body>
+    <section id="section1">
+        <div id="rightColumn" class="columnsContainer">
+            <canvas id="canvas" width="500" height="300"></canvas>
+            <form id="taskForm" style="display: none;">
+                <label for="description">Task Description:</label>
+                <input type="text" id="description" name="description" required>
+                <button type="submit">Save Task</button>
+            </form>
+            <ul id="tasksList"></ul>
+
+            <div id="canvasGroupContainer">
+                <canvas class="canvasGroup" id="canvas1"></canvas>
+                <canvas class="canvasGroup" id="canvas2"></canvas>
+                <canvas class="canvasGroup" id="canvas3"></canvas>
+            </div>
+
+            <div id="innerContainer">
+                <form id="messageForm" action="" method="post">
+                    <h3 class="formHeading">Oorzaak-Soort Schade:</h3>
+                    <label for="message"></label>
+                    <textarea name="message" id="message" cols="40" rows="4" required></textarea>
+                </form>
+
+
+                <ul id="tasksList"></ul>
+
+                <form id="controllerForm" action="" method="post">
+                    <h3 class="formHeading">Schade bevistigt/gemelt door:</h3>
+                    <label>Naam:
+                        <input name="controllerName" id="controllerName" type="text" required>
+                    </label>
+                    <label>Email:
+                        <input type="email" name="controllerEmail" id="controllerEmail" required>
+                    </label>
+                </form>
+            </div>
+        </div>
+
+        <div id="leftColumn" class="columnsContainer">
+            <div id="responsibleContainer">
+                <form id="responsibleForm" action="" method="post">
+                    <label id="kenteken"><span>Kenteken:</span>
+                        <input type="text" name="numberPlate" id="numberPlate" required>
+                    </label>
+                    <label>Verantwoordelijke:
+                        <input type="name" name="responsibleName" id="responsibleName" required>
+                    </label>
+                    <label>Datum:
+                        <input type="date" name="checkDate" id="checkDate" required>
+                    </label>
+                    <label>Tijd:
+                        <input type="time" name="checkTime" id="checkTime" required>
+                    </label>
+                    <label>Locatie:
+                        <input type="text" name="checkLocation" id="checkLocation" required>
+                    </label>
+                    <label>Adres:
+                        <input type="text" name="checkAddress" id="checkAddress" required>
+                    </label>
+                    <label>Email:
+                        <input type="email" name="responsibleEmail" id="responsibleEmail" required>
+                    </label>
+                </form>
+            </div>
+
+            <div id="amountDamageContainer">
+                <h3>Vergoeding bij schade:</h3>
+                <form id="amountDamageForm" action="" method="post">
+                    <label>Schade bedrag:
+                        <input type="text" name="amountDamage" id="amountDamage" required>
+                    </label>
+                    <div id="paidDamageCheckboxGroup">
+                        <label>Betaald:
+                            <input class="inputRadio" type="radio" name="paidDamageCheckbox1" id="checkbox1">
+                        </label>
+                        <label>Niet betaald:
+                            <input class="inputRadio" type="radio" name="paidDamageCheckbox1" id="checkbox2">
+                        </label>
+                    </div>
+                </form>
+            </div>
+
+            <div id="damageHistoryContainer">
+                <table id="damageHistoryForm">
+                    <thead>
+                        <tr>
+                            <th colspan="2">Schade Historie</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="col">Datum</th>
+                            <th scope="col">Verantwoordelijke</th>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="2">Laatst gebruit door:</th>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <form id="damageHistoryInnerForm" action="" method="post">
+                                    <label>Naam:
+                                        <input id="driverName" type="text" name="driverName" required>
+                                    </label>
+                                    <label>Email:
+                                        <input type="text" id="driverEmail" required>
+                                    </label>
+                                    <label>Datum:
+                                        <input type="date" name="damageHistoryDate" id="damageHistoryDate">
+                                    </label>
+                                </form>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section id="attachImageSection">
+        <div class="imageBox">
+            <input class="imageBtn" type="file" accept="image/*" id="imageInput" multiple>
+            <label class="upload-label">Upload Images</label>
+        </div>
+        <button type="button" id="submitData">Submit</button>
+    </section>
+
+
+    <section id="section2">
+        <div id="dataTableContainer">
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th colspan="4">Volledige Schade historie</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Datum</th>
+                        <th scope="col">Gemeld toor</th>
+                        <th scope="col">Verantwoordlijke</th>
+                        <th scope="col">Oorzaak-Soort Schade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="4">Laatst gebruit door:</th>
+                    </tr>
+                    <tr>
+                        <td colspan="4"></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </section>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

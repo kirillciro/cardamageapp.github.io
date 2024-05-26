@@ -1,0 +1,77 @@
+@import url(helpers/layout.css);
+@import url(helpers/forms.css);
+@import url(helpers/imageSection.css);
+
+* {
+    box-sizing: border-box;
+    font-family: system-ui, Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    padding-left: 20px;
+    margin: 0;
+}
+li {
+    list-style-type: square;
+    text-align: start;
+}
+
+
+h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/* Buttons */
+
+.imageBtn {
+    cursor: pointer;
+}
+
+#submitData {
+    width: 150px;
+    height: 30px;
+    font-weight: 500;
+    font-size: 16px;
+    
+}
+
+
+#canvas {
+    background: url(assets/mbSprinterEdited2.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    
+}
+
+#canvas1 {
+    background: url(assets/vanSides.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#canvas2 {
+    background: url(assets/vanFront.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#canvas3 {
+    background: url(assets/vanBack.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+
+
+
+
+
