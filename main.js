@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('canvas3')
     ];
 
+
     const highlightedAreas = {
         canvas: [],
         canvas1: [],
@@ -19,68 +20,56 @@ document.addEventListener('DOMContentLoaded', function () {
         canvas3: []
     };
 
-    function getMousePos(canvas, evt) {
-        const rect = canvas.getBoundingClientRect();
-        return {
-            x: (evt.clientX - rect.left) * (canvas.width / rect.width),
-            y: (evt.clientY - rect.top) * (canvas.height / rect.height)
-        };
-    }
-
-    function handleStart(evt) {
-        evt.preventDefault();
-        const pos = getMousePos(this, evt);
-        isDrawing = true;
-        startX = pos.x;
-        startY = pos.y;
-    }
-
-    function handleMove(evt) {
-        evt.preventDefault();
-        if (isDrawing) {
-            const pos = getMousePos(this, evt);
-            endX = pos.x;
-            endY = pos.y;
-            const ctx = this.getContext('2d');
-            ctx.clearRect(0, 0, this.width, this.height);
-            drawExistingHighlights(this.id);
-            drawRect(ctx, startX, startY, endX - startX, endY - startY);
-        }
-    }
-
-    function handleEnd(evt) {
-        evt.preventDefault();
-        if (isDrawing) {
-            isDrawing = false;
-            highlightedAreas[this.id].push({
-                x: startX, y: startY, width: endX - startX, height: endY - startY
-            });
-            const ctx = this.getContext('2d');
-            drawExistingHighlights(this.id);
-        }
-    }
-
-    function drawRect(ctx, x, y, width, height) {
-        ctx.fillStyle = 'rgba(255, 0, 0, 0.5)';
-        ctx.fillRect(x, y, width, height);
-    }
-
-    function drawExistingHighlights(canvasId) {
-        const canvas = document.getElementById(canvasId);
-        const ctx = canvas.getContext('2d');
-        highlightedAreas[canvasId].forEach(area => {
-            drawRect(ctx, area.x, area.y, area.width, area.height);
-        });
-    }
-
     canvases.forEach((canvas) => {
-        canvas.addEventListener('mousedown', handleStart);
-        canvas.addEventListener('mousemove', handleMove);
-        canvas.addEventListener('mouseup', handleEnd);
+        const ctx = canvas.getContext('2d');
 
-        canvas.addEventListener('touchstart', handleStart);
-        canvas.addEventListener('touchmove', handleMove);
-        canvas.addEventListener('touchend', handleEnd);
+        function getMousePos(canvas, evt) {
+            const rect = canvas.getBoundingClientRect();
+            return {
+                x: (evt.clientX - rect.left) * (canvas.width / rect.width),
+                y: (evt.clientY - rect.top) * (canvas.height / rect.height)
+            };
+        }
+
+        canvas.addEventListener('mousedown', (e) => {
+            const pos = getMousePos(canvas, e);
+            isDrawing = true;
+            startX = pos.x;
+            startY = pos.y;
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            if (isDrawing) {
+                const pos = getMousePos(canvas, e);
+                endX = pos.x;
+                endY = pos.y;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                drawExistingHighlights(canvas.id);
+                drawRect(ctx, startX, startY, endX - startX, endY - startY);
+            }
+        });
+
+        canvas.addEventListener('mouseup', () => {
+            if (isDrawing) {
+                isDrawing = false;
+                highlightedAreas[canvas.id].push({
+                    x: startX, y: startY, width: endX - startX, height: endY - startY
+                });
+                drawExistingHighlights(canvas.id);
+            }
+        });
+
+        function drawRect(ctx, x, y, width, height) {
+            ctx.fillStyle = 'rgba(255, 0, 0, 0.5)';
+            ctx.fillRect(x, y, width, height);
+        }
+
+        function drawExistingHighlights(canvasId) {
+            highlightedAreas[canvasId].forEach(area => {
+                drawRect(ctx, area.x, area.y, area.width, area.height);
+            });
+        }
+
 
         drawExistingHighlights(canvas.id);
     });
