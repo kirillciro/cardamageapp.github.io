@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('canvas3')
     ];
 
-
     const highlightedAreas = {
         canvas: [],
         canvas1: [],
@@ -31,11 +30,20 @@ document.addEventListener('DOMContentLoaded', function () {
             };
         }
 
+        function isInsideExistingHighlight(canvasId, x, y) {
+            return highlightedAreas[canvasId].some(area =>
+                x >= area.x && x <= area.x + area.width &&
+                y >= area.y && y <= area.y + area.height
+            );
+        }
+
         canvas.addEventListener('mousedown', (e) => {
             const pos = getMousePos(canvas, e);
-            isDrawing = true;
-            startX = pos.x;
-            startY = pos.y;
+            if (!isInsideExistingHighlight(canvas.id, pos.x, pos.y)) {
+                isDrawing = true;
+                startX = pos.x;
+                startY = pos.y;
+            }
         });
 
         canvas.addEventListener('mousemove', (e) => {
@@ -70,7 +78,6 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
 
-
         drawExistingHighlights(canvas.id);
     });
 
@@ -82,18 +89,23 @@ document.addEventListener('DOMContentLoaded', function () {
         const driverEmail = document.getElementById('driverEmail').value;
         const damageHistoryDate = document.getElementById('damageHistoryDate').value || new Date().toLocaleDateString();
         const responsibleName = document.getElementById('responsibleName').value;
+        const checkLocation = document.getElementById('checkLocation').value;
 
-        addTaskToTable(description, driverName, driverEmail, controllerName, controllerEmail, damageHistoryDate, responsibleName);
+        addTaskToTable(description, driverName, driverEmail, controllerName, controllerEmail, damageHistoryDate, responsibleName, checkLocation);
         appendNaamAndEmail(driverName, driverEmail);
         appendImages();
         document.getElementById('message').value = '';
         redrawHighlights();
     });
 
-    function addTaskToTable(description, driverName, driverEmail, controllerName, controllerEmail, damageHistoryDate, responsibleName) {
+    function addTaskToTable(description, driverName, driverEmail, controllerName, controllerEmail, damageHistoryDate, responsibleName, checkLocation) {
         const newRow = dataTable.insertRow();
         newRow.innerHTML = `
-            <td>${damageHistoryDate}</td>
+            <td>
+                <ul>
+                    <li>${damageHistoryDate}</li>
+                </ul>
+            </td>
             <td>
                 <ul>
                     <li>${responsibleName}</li>
@@ -101,10 +113,21 @@ document.addEventListener('DOMContentLoaded', function () {
             </td>
             <td>
                 <ul>
-                    <li>${controllerName}</li><br><li>${controllerEmail}</li>
+                    <li>${controllerName}</li>
+                    <br>
+                    <li>${controllerEmail}</li>
                 </ul>
             </td>
-            <td>${description}</td>
+            <td>
+                <ul>
+                    <li>${description}</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>${checkLocation}</li>
+                </ul>
+            </td>
         `;
     }
 
